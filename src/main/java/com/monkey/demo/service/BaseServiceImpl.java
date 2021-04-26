@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public class BaseServiceImpl<E, R extends JpaRepository> implements BaseService<E> {
+public abstract class BaseServiceImpl<E, R extends JpaRepository> implements BaseService<E> {
 
     private final R repository;
 
@@ -31,4 +31,6 @@ public class BaseServiceImpl<E, R extends JpaRepository> implements BaseService<
     public List<E> findAll() {
         return repository.findAll();
     }
+
+    public abstract E editEntity(E e);
 }
