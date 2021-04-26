@@ -1,23 +1,24 @@
 package com.monkey.demo.api;
 
 import com.monkey.demo.entity.Note;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
-import java.util.List;
+import com.monkey.demo.service.NoteService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v0/note")
 public class NoteApi {
 
-    @GetMapping
-    List<Note> hello() {
-        return List.of(
-                new Note("Hello", LocalDateTime.now()),
-                new Note("Hi", LocalDateTime.now()),
-                new Note("How are you", LocalDateTime.now())
-        );
+    private final NoteService service;
+
+    public NoteApi(NoteService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    ResponseEntity<Note> createNote(@RequestBody Note note) {
+        Note newNote = service.createEntity(note);
+        return new ResponseEntity(newNote, HttpStatus.CREATED);
     }
 }

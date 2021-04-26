@@ -9,7 +9,7 @@ public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "note_id")
-    private Long id;
+    private Long id = 1L;
 
     @Column(name = "note_text")
     private String note;
@@ -25,8 +25,12 @@ public class Note {
         this.date = date;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNote() {
@@ -45,3 +49,5 @@ public class Note {
         this.date = date;
     }
 }
+
+//    The another possible way is you set the leading and top anchor or trailing and bottom anchor of the label first and then set the view's width, height, leading and top anchor equal to the label.
