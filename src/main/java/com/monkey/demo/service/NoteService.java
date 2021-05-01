@@ -27,6 +27,7 @@ public class NoteService extends BaseServiceImpl<Note, NoteRepo> {
         Note old = repo.findById(note.getId()).orElseThrow();
         old.setNote(note.getNote());
         old.setDate(LocalDateTime.now());
+        repo.save(old);
         return old;
     }
 }

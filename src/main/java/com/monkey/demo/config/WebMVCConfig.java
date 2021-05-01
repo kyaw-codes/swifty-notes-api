@@ -49,7 +49,7 @@ public class WebMVCConfig {
 
     @Bean
     public ObjectMapper objectMapper() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy 'at' hh:MM a");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy 'at' hh:mm a");
         SimpleModule localDateModule = new SimpleModule();
         localDateModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(dateTimeFormatter));
         localDateModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(dateTimeFormatter));
